@@ -1,4 +1,10 @@
 package com.ftn.PMA.model;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -9,13 +15,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class GroceryAndAmountPair {
 	
-	private int id;
+	@Id
+	@GeneratedValue
+	private long id;
 
+	@ManyToOne(fetch=FetchType.EAGER)
     private Grocery grocery;
-    private int groceryId;
-    private int mealId;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Meal meal;
     private float amount;
 
 

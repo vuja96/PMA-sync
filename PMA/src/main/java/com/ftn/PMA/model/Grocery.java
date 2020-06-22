@@ -1,4 +1,8 @@
 package com.ftn.PMA.model;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +12,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Grocery {
 	
-	private int id;
+	@Id
+	@GeneratedValue
+	private long id;
     private String name;
     private float kcalPer100gr;
     private float proteinPer100gr;
