@@ -1,5 +1,7 @@
 package com.ftn.PMA.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,43 +54,59 @@ public class SyncController {
 	UserRepository userRepository;
 	
 	@RequestMapping(value = "/syncActivity", method = RequestMethod.POST)
-	public void syncActivity(@RequestBody Activity a) {
-		activityRepository.save(a);
+	public void syncActivity(@RequestBody List<Activity> a) {
+		for(Activity ac : a) {
+			activityRepository.save(ac);
+		}
 	}
 	
 	@RequestMapping(value = "/syncActivityType", method = RequestMethod.POST)
-	public void syncActivityType(@RequestBody ActivityType acType) {
-		activityTypeRepository.save(acType);
+	public void syncActivityType(@RequestBody List<ActivityType> acType) {
+		for(ActivityType act : acType) {
+			activityTypeRepository.save(act);
+		}
 	}
 	
 	@RequestMapping(value = "/syncDailySummary", method = RequestMethod.POST)
-	public void syncDailySummary(@RequestBody DailySummary daily) {
-		dailyRepository.save(daily);
+	public void syncDailySummary(@RequestBody List<DailySummary> daily) {
+		for(DailySummary ds : daily) {
+			dailyRepository.save(ds);
+		}
 	}
 	
 	@RequestMapping(value = "/syncGrocery", method = RequestMethod.POST)
-	public void syncGrocery(@RequestBody Grocery grocery) {
-		groceryRepository.save(grocery);
+	public void syncGrocery(@RequestBody List<Grocery> grocery) {
+		for(Grocery g : grocery) {
+			groceryRepository.save(g);
+		}
 	}
 	
 	@RequestMapping(value = "/syncGroceryAndAmount", method = RequestMethod.POST)
-	public void syncGroceryAndAmount(@RequestBody GroceryAndAmountPair grocery) {
-		groceryAndAmountRepository.save(grocery);
+	public void syncGroceryAndAmount(@RequestBody List<GroceryAndAmountPair> grocery) {
+		for(GroceryAndAmountPair g : grocery) {
+			groceryAndAmountRepository.save(g);
+		}
 	}
 	
 	@RequestMapping(value = "/syncLocation", method = RequestMethod.POST)
-	public void syncLocation(@RequestBody Location location) {
-		locationRepository.save(location);
+	public void syncLocation(@RequestBody List<Location> location) {
+		for(Location l : location) {
+			locationRepository.save(l);
+		}
 	}
 	
 	@RequestMapping(value = "/syncMeal", method = RequestMethod.POST)
-	public void syncMeal(@RequestBody Meal meal) {
-		mealRepository.save(meal);
+	public void syncMeal(@RequestBody List<Meal> meal) {
+		for(Meal m : meal) {
+			mealRepository.save(m);
+		}
 	}
 	
 	@RequestMapping(value = "/syncUser", method = RequestMethod.POST)
-	public void syncUser(@RequestBody User user) {
-		userRepository.save(user);
+	public void syncUser(@RequestBody List<User> user) {
+		for(User u : user) {
+			userRepository.save(u);
+		}
 	}
 	
 }
