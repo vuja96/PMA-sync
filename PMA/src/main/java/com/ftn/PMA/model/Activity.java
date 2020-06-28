@@ -24,6 +24,8 @@ public class Activity {
 	
 	@Id
 	@GeneratedValue
+	private long serverId;
+	
 	private long id;
     private String name;
     private Date date;

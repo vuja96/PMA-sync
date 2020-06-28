@@ -1,4 +1,5 @@
 package com.ftn.PMA.model;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,9 +21,11 @@ public class GroceryAndAmountPair {
 	
 	@Id
 	@GeneratedValue
+	private long serverId;
+	
 	private long id;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Grocery grocery;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

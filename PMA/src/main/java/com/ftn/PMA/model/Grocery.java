@@ -17,6 +17,8 @@ public class Grocery {
 	
 	@Id
 	@GeneratedValue
+	private long serverId;
+	
 	private long id;
     private String name;
     private float kcalPer100gr;

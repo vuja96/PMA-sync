@@ -21,6 +21,8 @@ public class Location {
 	
 	@Id
 	@GeneratedValue
+	private long serverId;
+	
 	private long id;
     private double lon;
     private double lat;
