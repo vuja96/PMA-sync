@@ -3,6 +3,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -20,7 +21,7 @@ import lombok.Setter;
 public class GroceryAndAmountPair {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long serverId;
 	
 	private long id;
@@ -28,7 +29,7 @@ public class GroceryAndAmountPair {
 	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Grocery grocery;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Meal meal;
     private float amount;
 

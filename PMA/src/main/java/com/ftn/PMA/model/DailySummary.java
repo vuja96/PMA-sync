@@ -18,7 +18,7 @@ import lombok.Setter;
 public class DailySummary {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private Date day;
     private Float kcalIn;

@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ActivityType {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long serverId;
 	
 	private long id;

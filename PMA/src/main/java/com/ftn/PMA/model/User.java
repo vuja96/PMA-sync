@@ -1,6 +1,7 @@
 package com.ftn.PMA.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.Setter;
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long serverId;
 	
 	private long id;
@@ -26,5 +27,6 @@ public class User {
     private float height;
     private int age;
     private boolean isSynced = false;	
+    private boolean male;
 
 }

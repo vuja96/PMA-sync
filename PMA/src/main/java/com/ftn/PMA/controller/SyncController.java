@@ -55,11 +55,18 @@ public class SyncController {
 	@Autowired
 	UserRepository userRepository;
 	
-	@RequestMapping(value = "/syncActivity", method = RequestMethod.POST)
+	@RequestMapping(value = "/syncActivity", method = RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<List<Activity>> syncActivity(@RequestBody List<Activity> a) {
 		boolean tmp = false;
 		for(Activity ac : a) {
+			if(!ac.getName().equals("Šetnja (automatski zabilježena)") && !ac.getName().equals("Bazalni metabolizam")) {
+				ActivityType type = activityTypeRepository.findOneById(ac.getActivityType().getId());
+				ac.setActivityType(type);
+			}
+			User user = userRepository.findOneByEmail(ac.getUser().getEmail()).get(0);
+			ac.setUser(user);
 			Activity result = activityRepository.save(ac);
+			
 			if(result == null)
 				tmp = true;
 		}
@@ -143,6 +150,13 @@ public class SyncController {
 	public ResponseEntity<List<Meal>> syncMeal(@RequestBody List<Meal> meal) {
 		boolean tmp = false;
 		for(Meal m : meal) {
+			User user = userRepository.findOneByEmail(m.getUser().getEmail()).get(0);
+			for(GroceryAndAmountPair pair : m.getGroceryAndAmountPairs()) {
+				Grocery g = groceryRepository.findGroceryByUserAndId(pair.getGrocery().getUserEmail(), pair.getGrocery().getId());
+				pair.setGrocery(g);
+				pair.setMeal(m);
+			}
+			m.setUser(user);
 			Meal result = mealRepository.save(m);
 			if(result == null)
 				tmp = true;
